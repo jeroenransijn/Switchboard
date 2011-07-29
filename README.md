@@ -3,8 +3,6 @@ Switchboard for RapidWeaver
 
 1. What is this?
 2. Usage
-	a. CSS
-	b. JavaScript
 3. Contribute
 
 
@@ -47,13 +45,13 @@ empty / stacks / blog / photo-album / movie-album / file-sharing / sitemap / ifr
 ----------------------------------------------------
 
 Probably one of the most useful features of Switchboard is in combination with JS. On a RapidWeaver page - with Switchboard - open up the JavaScript console and type `$.page.style`, and the console will return `sitemap` for example. That's basically how simple it is. With the use of Switchboard you can write code like this:
-**if ( $.page.style === 'sitemap' ) {
+``if ( $.page.style === 'sitemap' ) {
 	// do some cool stuff on your sitemap!
-}**
+}``
 
 or you could even write whole switch statements!
 
-**
+``
 switch ( $.page.style ) {
 	case 'empty':
 		welcomeScreen();
@@ -81,4 +79,5 @@ switch ( $.page.style ) {
 	case 'unknown':
 		break;	
 }
-**
+``
+
