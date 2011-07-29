@@ -54,9 +54,10 @@ Modernizr + Switchboard =
 ***
 
 All the supported page styles as of friday 29 july
-page-style-
+***
+**page-style-**
 empty / stacks / blog / photo-album / movie-album / file-sharing / sitemap / iframe / unknown
-
+***
 2b: JavaScript: executing JS based on the page style
 ----------------------------------------------------
 
