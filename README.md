@@ -3,7 +3,6 @@ Switchboard for RapidWeaver
 
 1. What is this?
 2. Usage
-3. Contribute
 
 
 1: What is this?
