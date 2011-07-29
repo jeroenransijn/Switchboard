@@ -18,7 +18,7 @@ If you take a look at the code you'll notice this `$.page.switchboard`, Switchbo
 Using Switchboard in your theme is really easy, first download Switchboard.
 Second, wrap it in:
 ***
-```
+```javascript
 jQuery(function($) { // paste Switchboard here });
 ```
 ***
@@ -26,7 +26,7 @@ if you're using jQuery.
 
 Third, include 
 ***
-```
+```html
 <script src="%pathto('js/page.switchboard.js')%" ><script/>
 ```
 ***
@@ -46,9 +46,12 @@ Example:
 ***
 
 Modernizr + Switchboard =
-
-`.rgba.page-style-contact-form`
-`.borderradius.page-style-photo-album`
+***
+```
+.rgba.page-style-contact-form`
+.borderradius.page-style-photo-album
+```
+***
 
 All the supported page styles as of friday 29 july
 page-style-
