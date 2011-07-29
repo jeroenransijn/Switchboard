@@ -17,15 +17,13 @@ If you take a look at the code you'll notice this `$.page.switchboard`, Switchbo
 
 Using Switchboard in your theme is really easy, first download Switchboard.
 Second, wrap it in:
-```javascript
-
+```
 jQuery(function($) { // paste Switchboard here });
 ```
 if you're using jQuery.
 
 Third, include 
 ```javascript
-
 <script src="%pathto('js/page.switchboard.js')%" ><script/>
 ``` in the `head` of your document, or as I prefer it, right before the closing body tag `</body>`. That should do it.
 
@@ -34,8 +32,7 @@ Third, include
 
 Class names get applied to the html tag, this makes it extremely easy to style elements based on the RW page style.
 Example:
-```css
-
+```
 .page-style-photo-album .album-wrapper { padding:15px; }
 .page-style-contact-form input:focus { outline:none; }
 .page-style-blog #content h1 { font-size:36px; }
@@ -54,8 +51,7 @@ empty / stacks / blog / photo-album / movie-album / file-sharing / sitemap / ifr
 ----------------------------------------------------
 
 Probably one of the most useful features of Switchboard is in combination with JS. On a RapidWeaver page - with Switchboard - open up the JavaScript console and type `$.page.style`, and the console will return `sitemap` for example. That's basically how simple it is. With the use of Switchboard you can write code like this:
-```javascript
-
+```
 if ( $.page.style === 'sitemap' ) {
 	// do some cool stuff on your sitemap!
 }
