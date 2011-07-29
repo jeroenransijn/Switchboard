@@ -48,8 +48,8 @@ Example:
 Modernizr + Switchboard =
 ***
 ```css
-.rgba.page-style-contact-form`
-.borderradius.page-style-photo-album
+.rgba.page-style-contact-form {}
+.borderradius.page-style-photo-album {}
 ```
 ***
 
