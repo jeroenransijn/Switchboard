@@ -1,5 +1,5 @@
 /*
- * Switchboard v1.0
+ * Switchboard v1.1
  * Copyright © 2011 Jeroen Ransijn
  *
  * Switchboard is a script for RapidWeaver that tests which page style is being used.
@@ -40,13 +40,13 @@ $.page.switchboard = function() {
 	};
 	
 	// early in the tests stack, it's a popular page style
-	// 
+	// test for class ".stacks_top"
 	tests['stacks'] = function() {
-		return 
+		return doesClassExist('stacks_top');
 	};
 	
 	// test for class ".blog-entry"
-	// too bad it can't be selected with '#unique-entry-id-'
+	// too bad it can't be selected with '#unique-entry-id-[i]'
 	tests['blog'] = function() {
 		return doesClassExist('blog-entry');
 	};
