@@ -19,7 +19,7 @@ Using Switchboard in your theme is really easy, first download Switchboard.
 Second, wrap it in:
 ***
 ```javascript
-jQuery(function($) { // paste Switchboard here });
+jQuery(function($) { /* paste Switchboard here */ });
 ```
 ***
 if you're using jQuery.
@@ -53,26 +53,63 @@ Modernizr + Switchboard =
 ```
 ***
 
-All the supported page styles as of friday 29 july
+All the supported page styles as of tuesday 9 august
 ***
 **page-style-**
-empty / stacks / blog / photo-album / movie-album / file-sharing / sitemap / iframe / unknown
+empty / stacks / blog / contact-form / photo-album / movie-album / file-sharing / sitemap / iframe / quicktime / unknown
 ***
 2b: JavaScript: executing JS based on the page style
 ----------------------------------------------------
 
-Probably one of the most useful features of Switchboard is in combination with JS. On a RapidWeaver page - with Switchboard - open up the JavaScript console and type `$.page.style`, and the console will return `sitemap` for example. That's basically how simple it is. With the use of Switchboard you can write code like this:
+**NEW** In v1.2 there are a couple of changes, first of all, **$.page.style** has become **$.page.style.type**. 
+Second, the way how you use Switchboard has become more intuitive.
+
+Using Switchboard with autorun (v1.2)
+-------------------------------------
+
+Autorun in Switchboard is the default, if you don't want it, go to 'Using Switchboard the old way'. 
+
+For every page style that you want supported create a method like this:
 ***
 ```javascript
-if ( $.page.style === 'sitemap' ) {
+$.page.style['contactForm'] = function() {
+	console.log('this is a contactForm page');
+};
+
+// or use dot notation
+$.page.style.sitemap = function() {
+	console.log('this is a sitemap page');
+};
+
+// switchboard needs to be called AFTER the methods!
+// the parameter is for clarity only
+$.page.switchboard({ autorun: true });
+
+```
+**NOTE: for the sake of sanity, the names are converted to camelCase, so contact-form is contactForm in js**
+
+
+Using Switchboard the old way
+-------------------------------------
+
+If you want to use Switchboard without the autorun capability turn it off like this: 
+```javascript
+$.page.switchboard({ autorun: false });
+```
+***
+Probably one of the most useful features of Switchboard is in combination with JS. On a RapidWeaver page - with Switchboard - open up the JavaScript console and type `$.page.style.type`, and the console will return `sitemap` for example. That's basically how simple it is. With the use of Switchboard you can write code like this:
+***
+```javascript
+if ( $.page.style.type === 'sitemap' ) {
 	// do some cool stuff on your sitemap!
 }
 ```
 ***
 or you could even write whole switch statements!
+**NOTE: as of v1.2 there is a more intuitive way using autorun**
 
 ```javascript
-switch ( $.page.style ) {
+switch ( $.page.style.type ) {
 	case 'empty':
 		welcomeScreen();
 		break;
