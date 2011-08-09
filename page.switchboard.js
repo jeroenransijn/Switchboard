@@ -1,25 +1,40 @@
 /*
- * Switchboard v1.1
+ * Switchboard v1.2
  * Copyright © 2011 Jeroen Ransijn
  *
  * Switchboard is a script for RapidWeaver that tests which page style is being used.
- * Although the script uses the page object, extending jQuery, it is jQuery independent
- * and could easily be used without the use of jQuery.
  * Tests mainly check for classnames, 
  * doesClassExist() makes sure the fastest way to do this is picked.
  * This method has a fallback on jQuery, note that there is no further fallback.
  *
- * todo: QuickTime support, not so hard probably, needs an exported page.
+ *	CHANGELOG:
+ *  - v1.2
+ *		- options parameter extending the settings object
+ *		- runPageStyleFunction() if settings.autorun is true
+ *		- the $.page.style property has become $.page.style.type
+ *		- var content wasn't selecting anything
+ *		- tests for contact-form and quicktime
+ *
  * supported: (page-style-) 
- * empty / stacks / blog / photo-album / movie-album / file-sharing / sitemap / iframe / unknown
+ * empty / stacks / blog / contact-form / photo-album / movie-album / 
+ * file-sharing / sitemap / iframe / quicktime / unknown
  * (styled text and html can't be detected)
  *
+ * Project			https://github.com/jeroenransijn/Switchboard
  * Author			@Jeroen_Ransijn 
  * Contributors		none
+ *
  */
-$.page.switchboard = function() {
+$.page.switchboard = function(options) {
+	var settings = {
+		autorun: true
+	};
+	
+	if (options) { $.extend(settings,options); }
+
+	$.page.style = {};
 	var tests = {},
-		content = 'content',
+		content = document.getElementById('content'),
 		nativeClassSelector = document.getElementsByClassName;
 	
 	// @param {string} classname without a dot
@@ -49,6 +64,11 @@ $.page.switchboard = function() {
 	// too bad it can't be selected with '#unique-entry-id-[i]'
 	tests['blog'] = function() {
 		return doesClassExist('blog-entry');
+	};
+	
+	// test for class ".form-footer"
+	tests['contact-form'] = function() {
+		return doesClassExist('form-footer');
 	};
 	
 	// test for class ".album-wrapper"
@@ -81,6 +101,11 @@ $.page.switchboard = function() {
 		return false;
 	};
 	
+	// test for class ".movie-frame"
+	tests['quicktime'] = function() {
+		return doesClassExist('movie-frame');		
+	};
+	
 	// if no tests pass, the pageStyle is unknown
 	tests['unknown'] = function() {
 		return true;
@@ -88,9 +113,17 @@ $.page.switchboard = function() {
 	
 	// @param {string} the page style
 	function testsComplete(pageStyle) {
-		$.page.style = pageStyle;
+		$.page.style.type = pageStyle;
 		var html = document.documentElement;	
 		html.setAttribute('class', html.className +' page-style-' + pageStyle);
+		console.log(settings.autorun);
+		if (settings.autorun) { runPageStyleFunction(pageStyle) };
+	};
+	
+	// @param {string} the page style
+	function runPageStyleFunction(pageStyle) {
+		pageStyle = pageStyle.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() });
+		(typeof $.page.style[pageStyle] === 'function') && $.page.style[pageStyle]();
 	};
 	
 	// run the tests
@@ -102,7 +135,7 @@ $.page.switchboard = function() {
 			}
 		}
 	}
-	return $.page.style;
+	return $.page.style.type;
 };
 
 $.page.switchboard();
