@@ -25,6 +25,7 @@
  * Contributors		none
  *
  */
+$.page.style = {};
 $.page.switchboard = function(options) {
 	var settings = {
 		autorun: true
@@ -32,7 +33,6 @@ $.page.switchboard = function(options) {
 	
 	if (options) { $.extend(settings,options); }
 
-	$.page.style = {};
 	var tests = {},
 		content = document.getElementById('content'),
 		nativeClassSelector = document.getElementsByClassName;
@@ -137,5 +137,7 @@ $.page.switchboard = function(options) {
 	}
 	return $.page.style.type;
 };
+
+// Page methods go here, Example: $.page.style.contactForm = function() {};
 
 $.page.switchboard();
